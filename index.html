@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark James Rogelio | Portfolio</title>
+    
+<link rel="stylesheet" href="./assets/css/output.css?v=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            transition: background-color 0.3s, color 0.3s;
+            opacity: 0; 
+            animation: fadeInContent 1s ease-out forwards;
+            animation-delay: 0.5s; 
+        }
+
+        #preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fcfcfc;
+            transition: opacity 0.6s ease-out, visibility 0.6s;
+        }
+        .dark #preloader { background-color: #0a0a0a; }
+        .vanish-out { opacity: 0; visibility: hidden; }
+        @keyframes fadeInContent { to { opacity: 1; } }
+
+        .loader-pulse {
+            width: 12px;
+            height: 12px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            animation: pulse-dot 1s infinite ease-in-out alternate;
+        }
+        @keyframes pulse-dot {
+            from { transform: scale(1); opacity: 1; }
+            to { transform: scale(2.5); opacity: 0; }
+        }
+
+        #profile-img { transition: opacity 0.2s ease-in-out; }
+        .fading { opacity: 0.5; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-[#fcfcfc] text-[#1a1a1a] dark:bg-[#0a0a0a] dark:text-[#fcfcfc]">
+
+    <div id="preloader">
+        <div class="flex flex-col items-center gap-4">
+            <h1 class="text-xl font-bold tracking-[0.3em] uppercase text-gray-400 animate-pulse">Mark James</h1>
+            <div class="loader-pulse"></div>
+        </div>
+    </div>
+
+    <div class="fixed top-6 right-6 z-50">
+        <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-full bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 shadow-lg hover:scale-110 transition flex items-center justify-center group">
+            <i id="theme-icon" class="fa-solid fa-moon text-gray-600 dark:text-yellow-400 text-sm group-hover:rotate-12 transition"></i>
+        </button>
+    </div>
+
+    <header class="max-w-6xl mx-auto px-6 pt-16 pb-10">
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+            <div class="w-24 h-24 rounded-full bg-gray-200 dark:bg-zinc-800 overflow-hidden border border-gray-100 dark:border-zinc-800 shadow-sm relative">
+                <img id="profile-img" src="./assets/images/me-white.jpg" alt="Mark James Rogelio" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                    <h1 class="text-3xl font-bold tracking-tight">Mark James Rogelio</h1>
+                    <i class="fa-solid fa-circle-check text-blue-500 text-sm"></i>
+                </div>
+                <p class="text-gray-500 dark:text-zinc-400 font-medium mb-4">IT Student \ Web Developer</p>
+                
+                <div class="flex flex-wrap gap-3">
+                    <a href="mailto:markjamesrogelio@gmail.com" class="bg-black dark:bg-white text-white dark:text-black px-5 py-2 rounded-lg text-sm font-semibold hover:opacity-80 transition flex items-center gap-2">
+                        <i class="fa-solid fa-envelope"></i> Hire Me
+                    </a>
+                    <a href="tel:+639603247894" class="border border-gray-200 dark:border-zinc-800 px-5 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 dark:hover:bg-zinc-900 transition flex items-center gap-2">
+                        <i class="fa-solid fa-phone"></i> Call Me
+                    </a>
+                </div>
+            </div>
+            <div class="hidden md:block">
+                <span class="bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest">
+                    Available for OJT 2026
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 pb-10 grid grid-cols-1 md:grid-cols-12 gap-6">
+        
+        <div class="md:col-span-7 bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-gray-100 dark:border-zinc-800 shadow-sm">
+            <h2 class="text-lg font-bold mb-4 flex items-center gap-2 uppercase tracking-tight">
+                <i class="fa-solid fa-user text-gray-400"></i> About
+            </h2>
+            <p class="text-gray-600 dark:text-zinc-400 leading-relaxed text-sm">
+                A tech student from <strong>Dr. Yanga's Colleges, Inc.</strong> with experience in educational platforms, system integration, and web development. Proficient in PHP, MySQL, and front-end technologies, I specialize in creating user interfaces and improving small-scale operations through code.
+            </p>
+            <p class="mt-4 text-gray-600 dark:text-zinc-400 leading-relaxed text-sm">
+                Lately, I've been diving deeper into <strong>Artificial Intelligence and Prompt Engineering</strong>, focusing on integrating AI tools into modern applications to optimize development workflows.
+            </p>
+            <div class="mt-10">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Tech Stack</h3>
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <p class="text-[10px] font-bold mb-2 text-gray-400 uppercase">Frontend</p>
+                        <p class="text-sm font-medium">HTML, CSS, JavaScript, React</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold mb-2 text-gray-400 uppercase">Backend</p>
+                        <p class="text-sm font-medium">PHP, MySQL, SQL</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:col-span-5 bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-gray-100 dark:border-zinc-800 shadow-sm">
+            <h2 class="text-lg font-bold mb-6 flex items-center gap-2 uppercase tracking-tight">
+                <i class="fa-solid fa-briefcase text-gray-400"></i> Experience
+            </h2>
+            <div class="relative border-l-2 border-gray-100 dark:border-zinc-800 ml-2 space-y-8">
+                <div class="ml-6 relative">
+                    <span class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-black dark:bg-white border-4 border-white dark:border-zinc-900"></span>
+                    <h4 class="text-sm font-bold">Project Leader & Full Stack</h4>
+                    <p class="text-xs text-gray-400 mb-1">EAS-CE System | 2025</p>
+                    <p class="text-xs text-gray-500 dark:text-zinc-500">Developed a full web-based clearance system for DYCI.</p>
+                </div>
+                <div class="ml-6 relative">
+                    <span class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-gray-300 dark:bg-zinc-600 border-4 border-white dark:border-zinc-900"></span>
+                    <h4 class="text-sm font-bold">Debugger & UI/UX Designer</h4>
+                    <p class="text-xs text-gray-400 mb-1">LEARNIT | 2025</p>
+                    <p class="text-xs text-gray-500 dark:text-zinc-500">Designed intuitive UI/UX using Figma and built responsive pages.</p>
+                </div>
+                <div class="ml-6 relative">
+                    <span class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-gray-300 dark:bg-zinc-600 border-4 border-white dark:border-zinc-900"></span>
+                    <h4 class="text-sm font-bold">Sub-Full Stack & Debugger</h4>
+                    <p class="text-xs text-gray-400 mb-1">E-GUARDIANS | 2024</p>
+                    <p class="text-xs text-gray-500 dark:text-zinc-500">Assisted in coding and led debugging for community safety system.</p>
+                </div>
+                <div class="ml-6 relative">
+                    <span class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-gray-200 dark:bg-zinc-800 border-4 border-white dark:border-zinc-900"></span>
+                    <h4 class="text-sm font-bold">BS Information Technology</h4>
+                    <p class="text-xs text-gray-400 mb-1">Dr. Yanga's Colleges | 2022-2026</p>
+                </div>
+                <div class="ml-6 relative">
+                    <span class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-gray-200 dark:bg-zinc-800 border-4 border-white dark:border-zinc-900"></span>
+                    <h4 class="text-sm font-bold">Hello World!</h4>
+                    <p class="text-xs text-gray-400 mb-1">Wrote my first line of code | 2021</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:col-span-8 bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-gray-100 dark:border-zinc-800 shadow-sm">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-lg font-bold flex items-center gap-2 uppercase tracking-tight">
+                    <i class="fa-solid fa-code text-gray-400"></i> Recent Projects
+                </h2>
+                <a href="projects.html" class="text-xs font-medium text-gray-400 hover:text-black dark:hover:text-white flex items-center gap-1 transition">
+                    View All <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                
+                <div class="p-6 rounded-2xl bg-white dark:bg-zinc-900 hover:bg-emerald-50 dark:hover:bg-emerald-950/20 transition border border-gray-100 dark:border-zinc-800 hover:border-emerald-100 dark:hover:border-emerald-900/50 group cursor-pointer sm:col-span-2">
+                    <div class="flex justify-between items-start">
+                        <div class="flex items-center gap-2">
+                            <h3 class="font-bold mb-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-500 transition">FinanceFlow</h3>
+                        </div>
+                        <a href="https://financeflow-c5042.web.app/index.html" target="_blank" class="text-xs text-gray-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                    <p class="text-xs text-gray-500 dark:text-zinc-400 group-hover:text-emerald-800/70 dark:group-hover:text-emerald-300/70 mb-4 transition">A personal finance management tool to track expenses, income, and budgeting goals.</p>
+                    <span class="text-[10px] font-bold text-gray-400 dark:text-zinc-500 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 bg-white dark:bg-zinc-900 group-hover:bg-white dark:group-hover:bg-emerald-950 px-2 py-1 rounded border border-gray-200 dark:border-zinc-700 group-hover:border-emerald-200 dark:group-hover:border-emerald-800 transition">FIREBASE / JS</span>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white dark:bg-zinc-900 hover:bg-amber-50 dark:hover:bg-amber-950/20 transition border border-gray-100 dark:border-zinc-800 hover:border-amber-100 dark:hover:border-amber-900/50 group cursor-pointer">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-bold mb-1 group-hover:text-amber-700 dark:group-hover:text-amber-500 transition">Kalinaw Coffee Co.</h3>
+                        <a href="https://kalinaw-coffee-co.netlify.app/" target="_blank" class="text-xs text-gray-400 group-hover:text-amber-700 dark:group-hover:text-amber-400 transition"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                    <p class="text-xs text-gray-500 dark:text-zinc-400 group-hover:text-amber-800/70 dark:group-hover:text-amber-300/70 mb-4 transition">A modern, minimalist coffee shop landing page featuring a curated menu display.</p>
+                    <span class="text-[10px] font-bold text-gray-400 dark:text-zinc-500 group-hover:text-amber-700 dark:group-hover:text-amber-400 bg-white dark:bg-zinc-900 group-hover:bg-white dark:group-hover:bg-amber-950 px-2 py-1 rounded border border-gray-200 dark:border-zinc-700 group-hover:border-amber-200 dark:group-hover:border-amber-800 transition">HTML / CSS / JS</span>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white dark:bg-zinc-900 hover:bg-sky-50 dark:hover:bg-sky-900/20 transition border border-gray-100 dark:border-zinc-800 hover:border-sky-100 dark:hover:border-sky-900 group cursor-pointer">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-bold mb-1 group-hover:text-sky-500 transition">AtmosPro</h3>
+                        <a href="https://atmospro.netlify.app/" target="_blank" class="text-xs text-gray-400 hover:text-sky-500"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                    <p class="text-xs text-gray-500 dark:text-zinc-400 mb-4 transition">Real-time weather tracking application.</p>
+                    <span class="text-[10px] font-bold text-gray-400 dark:text-zinc-500 bg-white dark:bg-zinc-900 px-2 py-1 rounded border border-gray-50 dark:border-zinc-800">JS / API / CSS</span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="md:col-span-4 bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-gray-100 dark:border-zinc-800 shadow-sm">
+            <h2 class="text-lg font-bold mb-6 flex items-center gap-2 uppercase tracking-tight">
+                <i class="fa-solid fa-award text-gray-400"></i> Certs
+            </h2>
+            <div class="space-y-4">
+                <div class="flex flex-col group">
+                    <span class="text-sm font-bold group-hover:text-blue-500 transition">IT Specialist: Data Analytics</span>
+                    <span class="text-[10px] text-gray-400">Certiport</span>
+                </div>
+                <div class="flex flex-col group">
+                    <span class="text-sm font-bold group-hover:text-yellow-500 transition">AgentBlazer Champion</span>
+                    <span class="text-[10px] text-gray-400">Workshop Completion</span>
+                </div>
+                <div class="flex flex-col group">
+                    <span class="text-sm font-bold group-hover:text-sky-500 transition">Intro to Cybersecurity</span>
+                    <span class="text-[10px] text-gray-400">Cisco</span>
+                </div>
+                <div class="flex flex-col group">
+                    <span class="text-sm font-bold group-hover:text-red-500 transition">Huawei Academy</span>
+                    <span class="text-[10px] text-gray-400">Huawei Technologies</span>
+                </div>
+                <div class="flex flex-col group">
+                    <span class="text-sm font-bold group-hover:text-purple-500 transition">IRCITE 2023</span>
+                    <span class="text-[10px] text-gray-400">Certificate of Attendance</span>
+                </div>
+                <div class="flex flex-col group">
+                    <span class="text-sm font-bold group-hover:text-orange-500 transition">Regional CyberSec Conf</span>
+                    <span class="text-[10px] text-gray-400">Certificate of Participation 2025</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <section class="max-w-6xl mx-auto px-6 mb-20 relative group/gallery">
+        <h2 class="text-lg font-bold mb-6 flex items-center gap-2 uppercase tracking-tight">
+            <i class="fa-regular fa-images text-gray-400"></i> Gallery
+        </h2>
+        
+        <button onclick="scrollGallery(-1)" class="absolute left-4 top-[60%] -translate-y-1/2 z-10 w-10 h-10 bg-white/80 dark:bg-black/50 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover/gallery:opacity-100 transition duration-300 hover:bg-white dark:hover:bg-zinc-700">
+            <i class="fa-solid fa-chevron-left text-sm"></i>
+        </button>
+
+        <button onclick="scrollGallery(1)" class="absolute right-4 top-[60%] -translate-y-1/2 z-10 w-10 h-10 bg-white/80 dark:bg-black/50 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover/gallery:opacity-100 transition duration-300 hover:bg-white dark:hover:bg-zinc-700">
+            <i class="fa-solid fa-chevron-right text-sm"></i>
+        </button>
+
+        <div id="gallery-container" class="flex gap-4 overflow-x-auto scroll-smooth snap-x no-scrollbar pb-4">
+            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
+                <img src="./assets/images/data.jpg" alt="Event 1" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                    <p class="text-white text-xs font-bold">IT Specialist in Data Analytics</p>
+                </div>
+            </div>
+
+            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
+                <img src="./assets/images/cyber.jpg" alt="Event 1" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                    <p class="text-white text-xs font-bold">Cybersecurity Conf 2025</p>
+                </div>
+            </div>
+            
+            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
+                 <img src="./assets/images/agent-blazer.jpg" alt="Event 2" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                    <p class="text-white text-xs font-bold">AgentBlazer Workshop</p>
+                </div>
+            </div>
+            
+            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
+                 <img src="./assets/images/learnit.jpg" alt="Event 3" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                    <p class="text-white text-xs font-bold">LEARNIT Launch</p>
+                </div>
+            </div>
+
+            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
+                 <img src="./assets/images/easce.jpg" alt="Event 4" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                    <p class="text-white text-xs font-bold">EAS-CE Launch</p>
+                </div>
+            </div>
+
+            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
+                 <img src="./assets/images/kalinaw.jpg" alt="Event 4" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                    <p class="text-white text-xs font-bold">Kalinaw Coffee Co. Launch</p>
+                </div>
+            </div>
+
+            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
+                 <img src="./assets/images/atmospro.jpg" alt="Event 4" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                    <p class="text-white text-xs font-bold">AtmosPro Launch</p>
+                </div>
+            </div>
+
+            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
+                 <img src="./assets/images/finance.png" alt="Event 4" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                    <p class="text-white text-xs font-bold">FinanceFlow Launch</p>
+                </div>
+            </div>
+
+            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
+                 <img src="./assets/images/mother.png" alt="Event 4" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                    <p class="text-white text-xs font-bold">Mother's Ledger Launch</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-20">
+        <div class="bg-black dark:bg-zinc-900 rounded-3xl p-10 md:p-16 text-center text-white relative overflow-hidden">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 relative z-10">Let's Work Together</h2>
+            <p class="text-gray-400 mb-8 max-w-xl mx-auto relative z-10">
+                I'm currently looking for an OJT opportunity. If you have a project or a role in mind, let's connect!
+            </p>
+
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 relative z-10">
+                <div class="flex items-center gap-2 text-sm font-medium bg-white/10 px-5 py-3 rounded-full border border-white/10 hover:bg-white/20 transition">
+                    <i class="fa-solid fa-envelope text-gray-400"></i>
+                    <a href="mailto:markjamesrogelio@gmail.com">markjamesrogelio@gmail.com</a>
+                </div>
+                <div class="flex items-center gap-2 text-sm font-medium bg-white/10 px-5 py-3 rounded-full border border-white/10 hover:bg-white/20 transition">
+                    <i class="fa-solid fa-phone text-gray-400"></i>
+                    <a href="tel:+639603247894">+63 960 324 7894</a>
+                </div>
+            </div>
+
+            <div class="flex justify-center gap-6 mt-8 text-2xl relative z-10">
+                <a href="https://facebook.com/emjay.rogelio" target="_blank" class="text-gray-400 hover:text-blue-500 transition hover:scale-110">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="https://linkedin.com/in/mark-james-rogelio" target="_blank" class="text-gray-400 hover:text-blue-400 transition hover:scale-110">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/markjamesrogelio" target="_blank" class="text-gray-400 hover:text-white transition hover:scale-110">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center py-10 text-gray-400 text-[10px] uppercase tracking-widest border-t border-gray-100 dark:border-zinc-900 mt-10">
+        <p>© 2026 Mark James Rogelio. All rights reserved.</p>
+        <p class="text-[10px] text-gray-400 mt-2">Visits: <span id="visit-count" class="font-bold">...</span></p>
+    </footer>
+
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const img = document.getElementById('profile-img');
+            const icon = document.getElementById('theme-icon');
+            
+            img.classList.add('fading');
+
+            setTimeout(() => {
+                html.classList.toggle('dark');
+                
+                if (html.classList.contains('dark')) {
+                    img.src = './assets/images/me-black.jpg';
+                    icon.classList.replace('fa-moon', 'fa-sun');
+                    localStorage.theme = 'dark';
+                } else {
+                    img.src = './assets/images/me-white.jpg';
+                    icon.classList.replace('fa-sun', 'fa-moon');
+                    localStorage.theme = 'light';
+                }
+                
+                img.classList.remove('fading');
+            }, 150); 
+        }
+
+        function scrollGallery(direction) {
+            const container = document.getElementById('gallery-container');
+            const scrollAmount = 300; 
+            container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+
+        function removePreloader() {
+            const preloader = document.getElementById('preloader');
+            if(preloader) preloader.classList.add('vanish-out');
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(removePreloader, 500);
+        });
+
+        setTimeout(removePreloader, 3000);
+
+        // VISIT COUNTER LOGIC (Increments on Main Page)
+        const counterContainer = document.getElementById("visit-count");
+        if (counterContainer) {
+            fetch("https://api.counterapi.dev/v1/markjamesrogelio-portfolio/visits/up")
+                .then(res => res.json())
+                .then(data => counterContainer.innerText = data.count)
+                .catch(err => {
+                    console.log(err);
+                    counterContainer.innerText = "N/A";
+                });
+        }
+    </script>
+</body>
+</html>

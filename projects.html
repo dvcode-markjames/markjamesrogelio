@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Projects | Mark James Rogelio</title>
+    
+<link rel="stylesheet" href="./assets/css/output.css?v=1">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            transition: background-color 0.3s, color 0.3s;
+            opacity: 1; 
+        }
+
+        #preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fcfcfc;
+            transition: opacity 0.6s ease-out, visibility 0.6s;
+        }
+        .dark #preloader { background-color: #0a0a0a; }
+        .vanish-out { opacity: 0; visibility: hidden; }
+        
+        .loader-pulse {
+            width: 12px;
+            height: 12px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            animation: pulse-dot 1s infinite ease-in-out alternate;
+        }
+        @keyframes pulse-dot {
+            from { transform: scale(1); opacity: 1; }
+            to { transform: scale(2.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-[#fcfcfc] text-[#1a1a1a] dark:bg-[#0a0a0a] dark:text-[#fcfcfc]">
+
+    <div id="preloader">
+        <div class="flex flex-col items-center gap-4">
+            <h1 class="text-xl font-bold tracking-[0.3em] uppercase text-gray-400 animate-pulse">Loading</h1>
+            <div class="loader-pulse"></div>
+        </div>
+    </div>
+
+    <div class="fixed top-6 right-6 z-50">
+        <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-full bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 shadow-lg hover:scale-110 transition flex items-center justify-center group">
+            <i id="theme-icon" class="fa-solid fa-moon text-gray-600 dark:text-yellow-400 text-sm group-hover:rotate-12 transition"></i>
+        </button>
+    </div>
+
+    <header class="max-w-6xl mx-auto px-6 pt-16 pb-10">
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-black dark:hover:text-white transition mb-8 group">
+            <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition"></i> Back to Home
+        </a>
+        <div class="flex flex-col gap-2">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight">All Projects</h1>
+            <p class="text-gray-500 dark:text-zinc-400 max-w-2xl">
+                A collection of web applications, systems, and experiments I've built using PHP, JavaScript, and Modern Tech Stacks.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 pb-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <div class="p-6 rounded-2xl bg-white dark:bg-zinc-900 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition border border-gray-100 dark:border-zinc-800 hover:border-purple-100 dark:hover:border-purple-900 group cursor-pointer">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+                    <div class="flex gap-2">
+                        <a href="https://financeflow-c5042.web.app/index.html" target="_blank" class="text-xs font-bold bg-green-100 text-green-700 px-2 py-1 rounded border border-green-200 hover:bg-green-200 transition">LIVE DEMO</a>
+                    </div>
+                </div>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-500 transition">FinanceFlow</h3>
+                <p class="text-sm text-gray-500 dark:text-zinc-400 mb-6 min-h-[40px] group-hover:text-emerald-800/70 dark:group-hover:text-emerald-300/70 transition">
+                    A personal finance management tool to track expenses, income, and budgeting goals. Features real-time calculation and data persistence.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-[10px] font-bold border border-gray-200 dark:border-zinc-700 px-2 py-1 rounded group-hover:border-emerald-200 group-hover:bg-white group-hover:text-emerald-700 transition">FIREBASE</span>
+                    <span class="text-[10px] font-bold border border-gray-200 dark:border-zinc-700 px-2 py-1 rounded group-hover:border-emerald-200 group-hover:bg-white group-hover:text-emerald-700 transition">HTML</span>
+                    <span class="text-[10px] font-bold border border-gray-200 dark:border-zinc-700 px-2 py-1 rounded group-hover:border-emerald-200 group-hover:bg-white group-hover:text-emerald-700 transition">JS</span>
+
+                </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white dark:bg-zinc-900 hover:bg-amber-50 dark:hover:bg-amber-950/20 transition border border-gray-100 dark:border-zinc-800 hover:border-amber-100 dark:hover:border-amber-900/50 group cursor-pointer">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+                    <div class="flex gap-2">
+                        <a href="https://kalinaw-coffee-co.netlify.app/" target="_blank" class="text-xs font-bold bg-green-100 text-green-700 px-2 py-1 rounded border border-green-200 hover:bg-green-200 transition">LIVE DEMO</a>
+                    </div>
+                </div>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-amber-500 transition">Kalinaw Coffee Co.</h3>
+                <p class="text-sm text-gray-500 dark:text-zinc-400 mb-6 min-h-[40px] group-hover:text-amber-800/70 dark:group-hover:text-amber-300/70 transition">
+                    A modern, minimalist coffee shop landing page featuring a curated menu display and brand showcase.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-[10px] font-bold border border-gray-200 dark:border-zinc-700 px-2 py-1 rounded group-hover:border-amber-200 group-hover:bg-white group-hover:text-amber-700 transition">HTML</span>
+                    <span class="text-[10px] font-bold border border-gray-200 dark:border-zinc-700 px-2 py-1 rounded group-hover:border-amber-200 group-hover:bg-white group-hover:text-amber-700 transition">CSS</span>
+                    <span class="text-[10px] font-bold border border-gray-200 dark:border-zinc-700 px-2 py-1 rounded group-hover:border-amber-200 group-hover:bg-white group-hover:text-amber-700 transition">JS</span>
+                </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white dark:bg-zinc-900 hover:bg-sky-50 dark:hover:bg-sky-900/20 transition border border-gray-100 dark:border-zinc-800 hover:border-sky-100 dark:hover:border-sky-900 group cursor-pointer">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="w-10 h-10 rounded-full bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center text-sky-600 dark:text-sky-400">
+                        <i class="fa-solid fa-cloud-sun"></i>
+                    </div>
+                    <div class="flex gap-2">
+                        <a href="https://atmospro.netlify.app/" target="_blank" class="text-xs font-bold bg-green-100 text-green-700 px-2 py-1 rounded border border-green-200 hover:bg-green-200 transition">LIVE DEMO</a>
+                    </div>
+                </div>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-sky-500 transition">AtmosPro</h3>
+                <p class="text-sm text-gray-500 dark:text-zinc-400 mb-6 min-h-[40px] group-hover:text-sky-800/70 dark:group-hover:text-sky-300/70 transition">
+                    Real-time weather tracking application with modern UI and API integration.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-[10px] font-bold border border-gray-200 dark:border-zinc-700 px-2 py-1 rounded group-hover:border-sky-200 group-hover:bg-white group-hover:text-sky-700 transition">JavaScript</span>
+                    <span class="text-[10px] font-bold border border-gray-200 dark:border-zinc-700 px-2 py-1 rounded group-hover:border-sky-200 group-hover:bg-white group-hover:text-sky-700 transition">Weather API</span>
+                </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white dark:bg-zinc-900 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition border border-gray-100 dark:border-zinc-800 hover:border-purple-100 dark:hover:border-purple-900 group cursor-pointer">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <div class="flex gap-2">
+                        <a href="https://mama-app-ledger.web.app/" target="_blank" class="text-xs font-bold bg-green-100 text-green-700 px-2 py-1 rounded border border-green-200 hover:bg-green-200 transition">LIVE DEMO</a>
+                    </div>
+                </div>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-purple-500 transition">Eliza's Ledger</h3>
+                <p class="text-sm text-gray-500 dark:text-zinc-400 mb-6 min-h-[40px] group-hover:text-purple-800/70 dark:group-hover:text-purple-300/70 transition">
+                    Digitized apartment rental & paluwagan checklist system with Excel export features.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-[10px] font-bold border border-gray-200 dark:border-zinc-700 px-2 py-1 rounded group-hover:border-purple-200 group-hover:bg-white group-hover:text-purple-700 transition">Firebase</span>
+                    <span class="text-[10px] font-bold border border-gray-200 dark:border-zinc-700 px-2 py-1 rounded group-hover:border-purple-200 group-hover:bg-white group-hover:text-purple-700 transition">JS</span>
+                </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white dark:bg-zinc-900 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition border border-gray-100 dark:border-zinc-800 hover:border-blue-100 dark:hover:border-blue-900 group cursor-pointer">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                        <i class="fa-solid fa-file-shield"></i>
+                    </div>
+                </div>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-blue-500 transition">EAS-CE System</h3>
+                <p class="text-sm text-gray-500 dark:text-zinc-400 mb-6 min-h-[40px] group-hover:text-blue-800/70 dark:group-hover:text-blue-300/70 transition">
+                    Centralized student clearance and e-document request system for DYCI.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-[10px] font-bold border border-gray-200 dark:border-zinc-700 px-2 py-1 rounded group-hover:border-blue-200 group-hover:bg-white group-hover:text-blue-700 transition">PHP</span>
+                    <span class="text-[10px] font-bold border border-gray-200 dark:border-zinc-700 px-2 py-1 rounded group-hover:border-blue-200 group-hover:bg-white group-hover:text-blue-700 transition">MySQL</span>
+                </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white dark:bg-zinc-900 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition border border-gray-100 dark:border-zinc-800 hover:border-emerald-100 dark:hover:border-emerald-900 group cursor-pointer">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                </div>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-emerald-500 transition">LEARNIT</h3>
+                <p class="text-sm text-gray-500 dark:text-zinc-400 mb-6 min-h-[40px] group-hover:text-emerald-800/70 dark:group-hover:text-emerald-300/70 transition">
+                    Interactive educational platform with integrated teaching resources.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-[10px] font-bold border border-gray-200 dark:border-zinc-700 px-2 py-1 rounded group-hover:border-emerald-200 group-hover:bg-white group-hover:text-emerald-700 transition">Figma</span>
+                    <span class="text-[10px] font-bold border border-gray-200 dark:border-zinc-700 px-2 py-1 rounded group-hover:border-emerald-200 group-hover:bg-white group-hover:text-emerald-700 transition">HTML/CSS</span>
+                </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white dark:bg-zinc-900 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition border border-gray-100 dark:border-zinc-800 hover:border-indigo-100 dark:hover:border-indigo-900 group cursor-pointer">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                </div>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-500 transition">E-GUARDIANS</h3>
+                <p class="text-sm text-gray-500 dark:text-zinc-400 mb-6 min-h-[40px] group-hover:text-indigo-800/70 dark:group-hover:text-indigo-300/70 transition">
+                    Web-based community safety platform for BSFI with reporting and analytics.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-[10px] font-bold border border-gray-200 dark:border-zinc-700 px-2 py-1 rounded group-hover:border-indigo-200 group-hover:bg-white group-hover:text-indigo-700 transition">MySQL Workbench</span>
+                    <span class="text-[10px] font-bold border border-gray-200 dark:border-zinc-700 px-2 py-1 rounded group-hover:border-indigo-200 group-hover:bg-white group-hover:text-indigo-700 transition">PHP</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="text-center py-10 text-gray-400 text-[10px] uppercase tracking-widest border-t border-gray-100 dark:border-zinc-900">
+        <p>© 2026 Mark James Rogelio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            
+            html.classList.toggle('dark');
+            
+            if (html.classList.contains('dark')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.theme = 'dark';
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.theme = 'light';
+            }
+        }
+
+        function removePreloader() {
+            const preloader = document.getElementById('preloader');
+            if(preloader) preloader.classList.add('vanish-out');
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(removePreloader, 500);
+        });
+
+        setTimeout(removePreloader, 1500);
+    </script>
+</body>
+</html>
