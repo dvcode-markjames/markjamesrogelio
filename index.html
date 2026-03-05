@@ -49,6 +49,101 @@
         .fading { opacity: 0.5; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* ── Lightbox ── */
+        #lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: rgba(0,0,0,0.92);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+        #lightbox.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        #lightbox img {
+            max-width: min(90vw, 900px);
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 16px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+            transform: scale(0.92);
+            transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
+        }
+        #lightbox.open img {
+            transform: scale(1);
+        }
+        #lightbox-caption {
+            color: #e5e5e5;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-align: center;
+        }
+        #lightbox-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .lb-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 20px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            text-decoration: none;
+        }
+        .lb-btn-close {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .lb-btn-close:hover { background: rgba(255,255,255,0.2); }
+        .lb-btn-download {
+            background: #3b82f6;
+            color: #fff;
+        }
+        .lb-btn-download:hover { background: #2563eb; transform: translateY(-1px); }
+
+        /* Nav arrows inside lightbox */
+        .lb-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+            z-index: 10001;
+            font-size: 14px;
+        }
+        .lb-nav:hover { background: rgba(255,255,255,0.25); }
+        #lb-prev { left: 20px; }
+        #lb-next { right: 20px; }
+
+        /* Make gallery items show a cursor pointer */
+        .gallery-item { cursor: zoom-in; }
     </style>
 </head>
 <body class="bg-[#fcfcfc] text-[#1a1a1a] dark:bg-[#0a0a0a] dark:text-[#fcfcfc]">
@@ -57,6 +152,18 @@
         <div class="flex flex-col items-center gap-4">
             <h1 class="text-xl font-bold tracking-[0.3em] uppercase text-gray-400 animate-pulse">Mark James</h1>
             <div class="loader-pulse"></div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button class="lb-nav" id="lb-prev" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="lb-nav" id="lb-next" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button>
+        <img id="lightbox-img" src="" alt="">
+        <p id="lightbox-caption"></p>
+        <div id="lightbox-actions">
+            <button class="lb-btn lb-btn-close" id="lb-close"><i class="fa-solid fa-xmark"></i> Close</button>
+            <a class="lb-btn lb-btn-download" id="lb-download" href="#" download><i class="fa-solid fa-download"></i> Download</a>
         </div>
     </div>
 
@@ -260,66 +367,85 @@
         </button>
 
         <div id="gallery-container" class="flex gap-4 overflow-x-auto scroll-smooth snap-x no-scrollbar pb-4">
-            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
-                <img src="./assets/images/data.jpg" alt="Event 1" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                    <p class="text-white text-xs font-bold">IT Specialist in Data Analytics</p>
+
+            <div class="gallery-item min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center"
+                 data-src="./assets/images/data.jpg" data-caption="IT Specialist in Data Analytics" data-index="0">
+                <img src="./assets/images/data.jpg" alt="IT Specialist in Data Analytics" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex flex-col items-end justify-between p-4">
+                    <span class="bg-white/20 backdrop-blur-sm rounded-full p-2 text-white text-xs"><i class="fa-solid fa-expand"></i></span>
+                    <p class="text-white text-xs font-bold self-start">IT Specialist in Data Analytics</p>
                 </div>
             </div>
 
-            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
-                <img src="./assets/images/cyber.jpg" alt="Event 1" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                    <p class="text-white text-xs font-bold">Cybersecurity Conf 2025</p>
+            <div class="gallery-item min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center"
+                 data-src="./assets/images/cyber.jpg" data-caption="Cybersecurity Conf 2025" data-index="1">
+                <img src="./assets/images/cyber.jpg" alt="Cybersecurity Conf 2025" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex flex-col items-end justify-between p-4">
+                    <span class="bg-white/20 backdrop-blur-sm rounded-full p-2 text-white text-xs"><i class="fa-solid fa-expand"></i></span>
+                    <p class="text-white text-xs font-bold self-start">Cybersecurity Conf 2025</p>
                 </div>
             </div>
             
-            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
-                 <img src="./assets/images/agent-blazer.jpg" alt="Event 2" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                    <p class="text-white text-xs font-bold">AgentBlazer Workshop</p>
+            <div class="gallery-item min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center"
+                 data-src="./assets/images/agent-blazer.jpg" data-caption="AgentBlazer Workshop" data-index="2">
+                 <img src="./assets/images/agent-blazer.jpg" alt="AgentBlazer Workshop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex flex-col items-end justify-between p-4">
+                    <span class="bg-white/20 backdrop-blur-sm rounded-full p-2 text-white text-xs"><i class="fa-solid fa-expand"></i></span>
+                    <p class="text-white text-xs font-bold self-start">AgentBlazer Workshop</p>
                 </div>
             </div>
             
-            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
-                 <img src="./assets/images/learnit.jpg" alt="Event 3" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                    <p class="text-white text-xs font-bold">LEARNIT Launch</p>
+            <div class="gallery-item min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center"
+                 data-src="./assets/images/learnit.jpg" data-caption="LEARNIT Launch" data-index="3">
+                 <img src="./assets/images/learnit.jpg" alt="LEARNIT Launch" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex flex-col items-end justify-between p-4">
+                    <span class="bg-white/20 backdrop-blur-sm rounded-full p-2 text-white text-xs"><i class="fa-solid fa-expand"></i></span>
+                    <p class="text-white text-xs font-bold self-start">LEARNIT Launch</p>
                 </div>
             </div>
 
-            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
-                 <img src="./assets/images/easce.jpg" alt="Event 4" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                    <p class="text-white text-xs font-bold">EAS-CE Launch</p>
+            <div class="gallery-item min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center"
+                 data-src="./assets/images/easce.jpg" data-caption="EAS-CE Launch" data-index="4">
+                 <img src="./assets/images/easce.jpg" alt="EAS-CE Launch" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex flex-col items-end justify-between p-4">
+                    <span class="bg-white/20 backdrop-blur-sm rounded-full p-2 text-white text-xs"><i class="fa-solid fa-expand"></i></span>
+                    <p class="text-white text-xs font-bold self-start">EAS-CE Launch</p>
                 </div>
             </div>
 
-            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
-                 <img src="./assets/images/kalinaw.jpg" alt="Event 4" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                    <p class="text-white text-xs font-bold">Kalinaw Coffee Co. Launch</p>
+            <div class="gallery-item min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center"
+                 data-src="./assets/images/kalinaw.jpg" data-caption="Kalinaw Coffee Co. Launch" data-index="5">
+                 <img src="./assets/images/kalinaw.jpg" alt="Kalinaw Coffee Co. Launch" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex flex-col items-end justify-between p-4">
+                    <span class="bg-white/20 backdrop-blur-sm rounded-full p-2 text-white text-xs"><i class="fa-solid fa-expand"></i></span>
+                    <p class="text-white text-xs font-bold self-start">Kalinaw Coffee Co. Launch</p>
                 </div>
             </div>
 
-            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
-                 <img src="./assets/images/atmospro.jpg" alt="Event 4" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                    <p class="text-white text-xs font-bold">AtmosPro Launch</p>
+            <div class="gallery-item min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center"
+                 data-src="./assets/images/atmospro.jpg" data-caption="AtmosPro Launch" data-index="6">
+                 <img src="./assets/images/atmospro.jpg" alt="AtmosPro Launch" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex flex-col items-end justify-between p-4">
+                    <span class="bg-white/20 backdrop-blur-sm rounded-full p-2 text-white text-xs"><i class="fa-solid fa-expand"></i></span>
+                    <p class="text-white text-xs font-bold self-start">AtmosPro Launch</p>
                 </div>
             </div>
 
-            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
-                 <img src="./assets/images/finance.png" alt="Event 4" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                    <p class="text-white text-xs font-bold">FinanceFlow Launch</p>
+            <div class="gallery-item min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center"
+                 data-src="./assets/images/finance.png" data-caption="FinanceFlow Launch" data-index="7">
+                 <img src="./assets/images/finance.png" alt="FinanceFlow Launch" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex flex-col items-end justify-between p-4">
+                    <span class="bg-white/20 backdrop-blur-sm rounded-full p-2 text-white text-xs"><i class="fa-solid fa-expand"></i></span>
+                    <p class="text-white text-xs font-bold self-start">FinanceFlow Launch</p>
                 </div>
             </div>
 
-            <div class="min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center">
-                 <img src="./assets/images/mother.png" alt="Event 4" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                    <p class="text-white text-xs font-bold">Mother's Ledger Launch</p>
+            <div class="gallery-item min-w-[280px] md:min-w-[24%] aspect-square rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-800 relative group snap-center"
+                 data-src="./assets/images/mother.png" data-caption="Mother's Ledger Launch" data-index="8">
+                 <img src="./assets/images/mother.png" alt="Mother's Ledger Launch" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex flex-col items-end justify-between p-4">
+                    <span class="bg-white/20 backdrop-blur-sm rounded-full p-2 text-white text-xs"><i class="fa-solid fa-expand"></i></span>
+                    <p class="text-white text-xs font-bold self-start">Mother's Ledger Launch</p>
                 </div>
             </div>
         </div>
@@ -363,6 +489,7 @@
     </footer>
 
     <script>
+        // ── Dark mode ──
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
             document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun');
@@ -374,12 +501,9 @@
             const html = document.documentElement;
             const img = document.getElementById('profile-img');
             const icon = document.getElementById('theme-icon');
-            
             img.classList.add('fading');
-
             setTimeout(() => {
                 html.classList.toggle('dark');
-                
                 if (html.classList.contains('dark')) {
                     img.src = './assets/images/me-black.jpg';
                     icon.classList.replace('fa-moon', 'fa-sun');
@@ -389,38 +513,92 @@
                     icon.classList.replace('fa-sun', 'fa-moon');
                     localStorage.theme = 'light';
                 }
-                
                 img.classList.remove('fading');
-            }, 150); 
+            }, 150);
         }
 
+        // ── Gallery scroll ──
         function scrollGallery(direction) {
             const container = document.getElementById('gallery-container');
-            const scrollAmount = 300; 
-            container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+            container.scrollBy({ left: direction * 300, behavior: 'smooth' });
         }
 
+        // ── Preloader ──
         function removePreloader() {
             const preloader = document.getElementById('preloader');
-            if(preloader) preloader.classList.add('vanish-out');
+            if (preloader) preloader.classList.add('vanish-out');
         }
-
-        window.addEventListener('load', () => {
-            setTimeout(removePreloader, 500);
-        });
-
+        window.addEventListener('load', () => setTimeout(removePreloader, 500));
         setTimeout(removePreloader, 3000);
 
-        // VISIT COUNTER LOGIC (Increments on Main Page)
+        // ── Lightbox ──
+        const lightbox     = document.getElementById('lightbox');
+        const lbImg        = document.getElementById('lightbox-img');
+        const lbCaption    = document.getElementById('lightbox-caption');
+        const lbDownload   = document.getElementById('lb-download');
+        const lbClose      = document.getElementById('lb-close');
+        const lbPrev       = document.getElementById('lb-prev');
+        const lbNext       = document.getElementById('lb-next');
+
+        const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+        let currentIndex   = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            const item   = galleryItems[index];
+            const src    = item.dataset.src;
+            const caption = item.dataset.caption;
+
+            lbImg.src        = src;
+            lbImg.alt        = caption;
+            lbCaption.textContent = caption;
+            lbDownload.href  = src;
+            // Derive a clean filename from caption
+            lbDownload.download = caption.toLowerCase().replace(/[^a-z0-9]+/g, '-') + src.slice(src.lastIndexOf('.'));
+
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function navigateLightbox(dir) {
+            const next = (currentIndex + dir + galleryItems.length) % galleryItems.length;
+            openLightbox(next);
+        }
+
+        // Attach click to each gallery item
+        galleryItems.forEach((item, i) => {
+            item.addEventListener('click', () => openLightbox(i));
+        });
+
+        lbClose.addEventListener('click', closeLightbox);
+        lbPrev.addEventListener('click', () => navigateLightbox(-1));
+        lbNext.addEventListener('click', () => navigateLightbox(1));
+
+        // Close on backdrop click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'Escape')      closeLightbox();
+            if (e.key === 'ArrowLeft')   navigateLightbox(-1);
+            if (e.key === 'ArrowRight')  navigateLightbox(1);
+        });
+
+        // ── Visit counter ──
         const counterContainer = document.getElementById("visit-count");
         if (counterContainer) {
             fetch("https://api.counterapi.dev/v1/markjamesrogelio-portfolio/visits/up")
                 .then(res => res.json())
                 .then(data => counterContainer.innerText = data.count)
-                .catch(err => {
-                    console.log(err);
-                    counterContainer.innerText = "N/A";
-                });
+                .catch(() => counterContainer.innerText = "N/A");
         }
     </script>
 </body>
