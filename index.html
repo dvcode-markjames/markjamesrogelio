@@ -592,6 +592,12 @@
             if (e.key === 'ArrowRight')  navigateLightbox(1);
         });
 
+        // ── No right-click allowed ──
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            return false;
+        });
+
         // ── Visit counter ──
         const counterContainer = document.getElementById("visit-count");
         if (counterContainer) {

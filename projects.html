@@ -259,6 +259,12 @@
         });
 
         setTimeout(removePreloader, 1500);
+
+                // ── No right-click allowed ──
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            return false;
+        });
     </script>
 </body>
 </html>
