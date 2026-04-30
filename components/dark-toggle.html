@@ -1,0 +1,19 @@
+<!--
+  components/dark-toggle.html
+  ────────────────────────────
+  Dark / light mode toggle button.
+  Reference partial — paste into the top-right corner of any page.
+
+  Requires in JS:
+    utils/theme.js + exposed window.toggleDarkMode via init.js / init-projects.js
+-->
+<div class="fixed top-6 right-6 z-50">
+    <button
+        onclick="toggleDarkMode()"
+        id="dark-toggle-btn"
+        aria-label="Toggle dark mode"
+        class="w-10 h-10 rounded-full bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 shadow-lg hover:scale-110 transition flex items-center justify-center group"
+    >
+        <i id="theme-icon" class="fa-solid fa-moon text-gray-600 dark:text-yellow-400 text-sm group-hover:rotate-12 transition"></i>
+    </button>
+</div>

@@ -1,0 +1,30 @@
+<!--
+  components/lightbox.html
+  ─────────────────────────
+  Fullscreen image lightbox overlay.
+  Reference partial — paste into any page that uses the gallery lightbox.
+
+  Requires in CSS (via input.css / output.css):
+    #lightbox, #lightbox.open, .lb-nav, #lb-prev, #lb-next,
+    #lightbox-caption, #lightbox-actions, .lb-btn, .lb-btn-close, .lb-btn-download
+  Requires in JS:
+    utils/lightbox.js → initLightbox()
+-->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lb-nav" id="lb-prev" aria-label="Previous image">
+        <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <button class="lb-nav" id="lb-next" aria-label="Next image">
+        <i class="fa-solid fa-chevron-right"></i>
+    </button>
+    <img id="lightbox-img" src="" alt="">
+    <p id="lightbox-caption"></p>
+    <div id="lightbox-actions">
+        <button class="lb-btn lb-btn-close" id="lb-close">
+            <i class="fa-solid fa-xmark"></i> Close
+        </button>
+        <a class="lb-btn lb-btn-download" id="lb-download" href="#" download>
+            <i class="fa-solid fa-download"></i> Download
+        </a>
+    </div>
+</div>

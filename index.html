@@ -8,143 +8,7 @@
 <link rel="stylesheet" href="./assets/css/output.css?v=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        
-        body { 
-            font-family: 'Inter', sans-serif; 
-            transition: background-color 0.3s, color 0.3s;
-            opacity: 0; 
-            animation: fadeInContent 1s ease-out forwards;
-            animation-delay: 0.5s; 
-        }
 
-        #preloader {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #fcfcfc;
-            transition: opacity 0.6s ease-out, visibility 0.6s;
-        }
-        .dark #preloader { background-color: #0a0a0a; }
-        .vanish-out { opacity: 0; visibility: hidden; }
-        @keyframes fadeInContent { to { opacity: 1; } }
-
-        .loader-pulse {
-            width: 12px;
-            height: 12px;
-            background-color: #3b82f6;
-            border-radius: 50%;
-            animation: pulse-dot 1s infinite ease-in-out alternate;
-        }
-        @keyframes pulse-dot {
-            from { transform: scale(1); opacity: 1; }
-            to { transform: scale(2.5); opacity: 0; }
-        }
-
-        #profile-img { transition: opacity 0.2s ease-in-out; }
-        .fading { opacity: 0.5; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        /* ── Lightbox ── */
-        #lightbox {
-            position: fixed;
-            inset: 0;
-            z-index: 10000;
-            background: rgba(0,0,0,0.92);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s;
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-        }
-        #lightbox.open {
-            opacity: 1;
-            visibility: visible;
-        }
-        #lightbox img {
-            max-width: min(90vw, 900px);
-            max-height: 75vh;
-            object-fit: contain;
-            border-radius: 16px;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.6);
-            transform: scale(0.92);
-            transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
-        }
-        #lightbox.open img {
-            transform: scale(1);
-        }
-        #lightbox-caption {
-            color: #e5e5e5;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-align: center;
-        }
-        #lightbox-actions {
-            display: flex;
-            gap: 12px;
-        }
-        .lb-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 9px 20px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: none;
-            text-decoration: none;
-        }
-        .lb-btn-close {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .lb-btn-close:hover { background: rgba(255,255,255,0.2); }
-        .lb-btn-download {
-            background: #3b82f6;
-            color: #fff;
-        }
-        .lb-btn-download:hover { background: #2563eb; transform: translateY(-1px); }
-
-        /* Nav arrows inside lightbox */
-        .lb-nav {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #fff;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background 0.2s;
-            z-index: 10001;
-            font-size: 14px;
-        }
-        .lb-nav:hover { background: rgba(255,255,255,0.25); }
-        #lb-prev { left: 20px; }
-        #lb-next { right: 20px; }
-
-        /* Make gallery items show a cursor pointer */
-        .gallery-item { cursor: zoom-in; }
-    </style>
 </head>
 <body class="bg-[#fcfcfc] text-[#1a1a1a] dark:bg-[#0a0a0a] dark:text-[#fcfcfc]">
 
@@ -186,12 +50,6 @@
                 <p class="text-gray-500 dark:text-zinc-400 font-medium mb-4">IT Student \ Web Developer</p>
                 
                 <div class="flex flex-wrap gap-3">
-                    <a href="mailto:markjamesrogelio@gmail.com" class="bg-black dark:bg-white text-white dark:text-black px-5 py-2 rounded-lg text-sm font-semibold hover:opacity-80 transition flex items-center gap-2">
-                        <i class="fa-solid fa-envelope"></i> Hire Me
-                    </a>
-                    <a href="tel:+639603247894" class="border border-gray-200 dark:border-zinc-800 px-5 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 dark:hover:bg-zinc-900 transition flex items-center gap-2">
-                        <i class="fa-solid fa-phone"></i> Call Me
-                    </a>
                     <a href="./assets/markjamesrogelio_cv_tech.pdf" download="MarkJamesRogelio_CV.pdf" class="border border-blue-200 dark:border-blue-900 text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/30 px-5 py-2 rounded-lg text-sm font-semibold hover:bg-blue-100 dark:hover:bg-blue-900/40 transition flex items-center gap-2">
                         <i class="fa-solid fa-file-arrow-down"></i> Download CV
                     </a>
@@ -464,11 +322,11 @@
             <div class="flex flex-col md:flex-row justify-center items-center gap-6 relative z-10">
                 <div class="flex items-center gap-2 text-sm font-medium bg-white/10 px-5 py-3 rounded-full border border-white/10 hover:bg-white/20 transition">
                     <i class="fa-solid fa-envelope text-gray-400"></i>
-                    <a href="mailto:markjamesrogelio@gmail.com">markjamesrogelio@gmail.com</a>
+                    <a>markjamesrogelio@gmail.com</a>
                 </div>
                 <div class="flex items-center gap-2 text-sm font-medium bg-white/10 px-5 py-3 rounded-full border border-white/10 hover:bg-white/20 transition">
                     <i class="fa-solid fa-phone text-gray-400"></i>
-                    <a href="tel:+639603247894">+63 960 324 7894</a>
+                    <a>+63 960 324 7894</a>
                 </div>
             </div>
 
@@ -491,124 +349,6 @@
         <p class="text-[10px] text-gray-400 mt-2">Visits: <span id="visit-count" class="font-bold">...</span></p>
     </footer>
 
-    <script>
-        // ── Dark mode ──
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-            document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-
-        function toggleDarkMode() {
-            const html = document.documentElement;
-            const img = document.getElementById('profile-img');
-            const icon = document.getElementById('theme-icon');
-            img.classList.add('fading');
-            setTimeout(() => {
-                html.classList.toggle('dark');
-                if (html.classList.contains('dark')) {
-                    img.src = './assets/images/me-black.jpg';
-                    icon.classList.replace('fa-moon', 'fa-sun');
-                    localStorage.theme = 'dark';
-                } else {
-                    img.src = './assets/images/me-white.jpg';
-                    icon.classList.replace('fa-sun', 'fa-moon');
-                    localStorage.theme = 'light';
-                }
-                img.classList.remove('fading');
-            }, 150);
-        }
-
-        // ── Gallery scroll ──
-        function scrollGallery(direction) {
-            const container = document.getElementById('gallery-container');
-            container.scrollBy({ left: direction * 300, behavior: 'smooth' });
-        }
-
-        // ── Preloader ──
-        function removePreloader() {
-            const preloader = document.getElementById('preloader');
-            if (preloader) preloader.classList.add('vanish-out');
-        }
-        window.addEventListener('load', () => setTimeout(removePreloader, 500));
-        setTimeout(removePreloader, 3000);
-
-        // ── Lightbox ──
-        const lightbox     = document.getElementById('lightbox');
-        const lbImg        = document.getElementById('lightbox-img');
-        const lbCaption    = document.getElementById('lightbox-caption');
-        const lbDownload   = document.getElementById('lb-download');
-        const lbClose      = document.getElementById('lb-close');
-        const lbPrev       = document.getElementById('lb-prev');
-        const lbNext       = document.getElementById('lb-next');
-
-        const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
-        let currentIndex   = 0;
-
-        function openLightbox(index) {
-            currentIndex = index;
-            const item   = galleryItems[index];
-            const src    = item.dataset.src;
-            const caption = item.dataset.caption;
-
-            lbImg.src        = src;
-            lbImg.alt        = caption;
-            lbCaption.textContent = caption;
-            lbDownload.href  = src;
-            // Derive a clean filename from caption
-            lbDownload.download = caption.toLowerCase().replace(/[^a-z0-9]+/g, '-') + src.slice(src.lastIndexOf('.'));
-
-            lightbox.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            lightbox.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        function navigateLightbox(dir) {
-            const next = (currentIndex + dir + galleryItems.length) % galleryItems.length;
-            openLightbox(next);
-        }
-
-        // Attach click to each gallery item
-        galleryItems.forEach((item, i) => {
-            item.addEventListener('click', () => openLightbox(i));
-        });
-
-        lbClose.addEventListener('click', closeLightbox);
-        lbPrev.addEventListener('click', () => navigateLightbox(-1));
-        lbNext.addEventListener('click', () => navigateLightbox(1));
-
-        // Close on backdrop click
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
-        });
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('open')) return;
-            if (e.key === 'Escape')      closeLightbox();
-            if (e.key === 'ArrowLeft')   navigateLightbox(-1);
-            if (e.key === 'ArrowRight')  navigateLightbox(1);
-        });
-
-        // ── No right-click allowed ──
-        document.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            return false;
-        });
-
-        // ── Visit counter ──
-        const counterContainer = document.getElementById("visit-count");
-        if (counterContainer) {
-            fetch("https://api.counterapi.dev/v1/markjamesrogelio-portfolio/visits/up")
-                .then(res => res.json())
-                .then(data => counterContainer.innerText = data.count)
-                .catch(() => counterContainer.innerText = "N/A");
-        }
-    </script>
+    <script type="module" src="./utils/init.js"></script>
 </body>
 </html>

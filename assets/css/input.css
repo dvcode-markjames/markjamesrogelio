@@ -4,15 +4,24 @@
 @tailwind components;
 @tailwind utilities;
 
-/* --- Custom Styles --- */
-body { 
-    font-family: 'Inter', sans-serif; 
+/* ─────────────────────────────────────────────────────
+   Base
+───────────────────────────────────────────────────── */
+body {
+    font-family: 'Inter', sans-serif;
     transition: background-color 0.3s, color 0.3s;
-    opacity: 0; 
+    opacity: 0;
     animation: fadeInContent 1s ease-out forwards;
-    animation-delay: 0.5s; 
+    animation-delay: 0.5s;
 }
 
+@keyframes fadeInContent {
+    to { opacity: 1; }
+}
+
+/* ─────────────────────────────────────────────────────
+   Preloader
+───────────────────────────────────────────────────── */
 #preloader {
     position: fixed;
     inset: 0;
@@ -25,9 +34,11 @@ body {
 }
 
 .dark #preloader { background-color: #0a0a0a; }
-.vanish-out { opacity: 0; visibility: hidden; }
 
-@keyframes fadeInContent { to { opacity: 1; } }
+.vanish-out {
+    opacity: 0;
+    visibility: hidden;
+}
 
 .loader-pulse {
     width: 12px;
@@ -38,13 +49,134 @@ body {
 }
 
 @keyframes pulse-dot {
-    from { transform: scale(1); opacity: 1; }
-    to { transform: scale(2.5); opacity: 0; }
+    from { transform: scale(1);   opacity: 1; }
+    to   { transform: scale(2.5); opacity: 0; }
 }
 
+/* ─────────────────────────────────────────────────────
+   Profile image fade on theme swap
+───────────────────────────────────────────────────── */
 #profile-img { transition: opacity 0.2s ease-in-out; }
-.fading { opacity: 0.5; }
+.fading       { opacity: 0.5; }
 
-/* Hide scrollbar */
+/* ─────────────────────────────────────────────────────
+   Hide scrollbar (gallery strip)
+───────────────────────────────────────────────────── */
 .no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* ─────────────────────────────────────────────────────
+   Gallery item cursor
+───────────────────────────────────────────────────── */
+.gallery-item { cursor: zoom-in; }
+
+/* ─────────────────────────────────────────────────────
+   Lightbox overlay
+───────────────────────────────────────────────────── */
+#lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+#lightbox.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+#lightbox img {
+    max-width: min(90vw, 900px);
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 16px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+    transform: scale(0.92);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#lightbox.open img {
+    transform: scale(1);
+}
+
+#lightbox-caption {
+    color: #e5e5e5;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-align: center;
+}
+
+#lightbox-actions {
+    display: flex;
+    gap: 12px;
+}
+
+/* ─────────────────────────────────────────────────────
+   Lightbox buttons
+───────────────────────────────────────────────────── */
+.lb-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 20px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    text-decoration: none;
+}
+
+.lb-btn-close {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.lb-btn-close:hover { background: rgba(255, 255, 255, 0.2); }
+
+.lb-btn-download { background: #3b82f6; color: #fff; }
+.lb-btn-download:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+/* ─────────────────────────────────────────────────────
+   Lightbox nav arrows
+───────────────────────────────────────────────────── */
+.lb-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    z-index: 10001;
+    font-size: 14px;
+}
+.lb-nav:hover { background: rgba(255, 255, 255, 0.25); }
+
+#lb-prev { left: 20px; }
+#lb-next { right: 20px; }

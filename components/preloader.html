@@ -1,0 +1,17 @@
+<!--
+  components/preloader.html
+  ─────────────────────────
+  Shared preloader overlay markup.
+  Reference partial — paste into any page that needs a loading screen.
+
+  Requires in CSS (via input.css / output.css):
+    #preloader, .dark #preloader, .vanish-out, .loader-pulse, @keyframes pulse-dot
+  Requires in JS:
+    utils/preloader.js → initPreloader()
+-->
+<div id="preloader">
+    <div class="flex flex-col items-center gap-4">
+        <h1 class="text-xl font-bold tracking-[0.3em] uppercase text-gray-400 animate-pulse">Mark James</h1>
+        <div class="loader-pulse"></div>
+    </div>
+</div>
